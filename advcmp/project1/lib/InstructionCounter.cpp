@@ -7,6 +7,7 @@
 #include "llvm/IR/Function.h"
 #include "llvm/IR/BasicBlock.h"
 #include "llvm/IR/Instructions.h"
+#include "llvm/IR/InstIterator.h"
 
 using namespace llvm;
 
@@ -14,13 +15,20 @@ using namespace llvm;
 PreservedAnalyses InstructionCounter::run(Function &F,
                                           FunctionAnalysisManager &FAM) {
   //******************************** TODO 1 ********************************
+
   for(auto &BB:F){ //Fuction 클래스 안에 이렇게 Basic Block들이 이중연결 리스트로 연결되어있음
 		for(auto &I:BB){  //Basic Block도 동일하게~
-      const char* opcode_name=I.getOpcodeName();//여기서 계속 오류난다......ㅠㅠ
-      printf("%s %d\n",opcode_name,I.getOpcode());
-      //InstructionCounter[I.getOpcodeName()]++;
+      const char* opcode_name=I.getOpcodeName();
+      //printf("%s %d\n",opcode_name,I.getOpcode());
+      InstructionCounter[I.getOpcodeName()]++;
     } 
  	}
+
+  // F is a pointer to a Function instance
+  /*
+  for (inst_iterator I = inst_begin(F), E = inst_end(F); I != E; ++I)
+    errs() << *I << "\n"; //테스트
+  */
   //****************************** TODO 1 END ******************************
 
   errs() << "Instruction hit counts\n";

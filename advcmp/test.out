@@ -1,22 +1,11 @@
-PLEASE submit a bug report to https://github.com/llvm/llvm-project/issues/ and include the crash backtrace.
-Stack dump:
-0.	Program arguments: opt -S -load-pass-plugin=build/lib/libInstructionCounter.so -passes=instruction-counter test.ll -disable-output
- #0 0x00007f1d040b8406 llvm::sys::PrintStackTrace(llvm::raw_ostream&, int) (/usr/lib/llvm-17/bin/../lib/libLLVM-17.so.1+0xccc406)
- #1 0x00007f1d040b65b0 llvm::sys::RunSignalHandlers() (/usr/lib/llvm-17/bin/../lib/libLLVM-17.so.1+0xcca5b0)
- #2 0x00007f1d040b8a9b (/usr/lib/llvm-17/bin/../lib/libLLVM-17.so.1+0xccca9b)
- #3 0x00007f1d02ecb520 (/lib/x86_64-linux-gnu/libc.so.6+0x42520)
- #4 0x00007f1d00cc24a6 llvm::Value::getValueID() const (build/lib/libInstructionCounter.so+0x144a6)
- #5 0x00007f1d00cc24ca llvm::Instruction::getOpcode() const (build/lib/libInstructionCounter.so+0x144ca)
- #6 0x00007f1d00cc24ec llvm::Instruction::getOpcodeName() const (build/lib/libInstructionCounter.so+0x144ec)
- #7 0x00007f1d00cc0b7b InstructionCounter::run(llvm::Function&, llvm::AnalysisManager<llvm::Function>&) (build/lib/libInstructionCounter.so+0x12b7b)
- #8 0x00007f1d00cc5b39 llvm::detail::PassModel<llvm::Function, InstructionCounter, llvm::AnalysisManager<llvm::Function>>::run(llvm::Function&, llvm::AnalysisManager<llvm::Function>&) (build/lib/libInstructionCounter.so+0x17b39)
- #9 0x00007f1d0422c484 llvm::PassManager<llvm::Function, llvm::AnalysisManager<llvm::Function>>::run(llvm::Function&, llvm::AnalysisManager<llvm::Function>&) (/usr/lib/llvm-17/bin/../lib/libLLVM-17.so.1+0xe40484)
-#10 0x00007f1d05ffc96d (/usr/lib/llvm-17/bin/../lib/libLLVM-17.so.1+0x2c1096d)
-#11 0x00007f1d0422fc81 llvm::ModuleToFunctionPassAdaptor::run(llvm::Module&, llvm::AnalysisManager<llvm::Module>&) (/usr/lib/llvm-17/bin/../lib/libLLVM-17.so.1+0xe43c81)
-#12 0x00007f1d05ffc78d (/usr/lib/llvm-17/bin/../lib/libLLVM-17.so.1+0x2c1078d)
-#13 0x00007f1d0422b224 llvm::PassManager<llvm::Module, llvm::AnalysisManager<llvm::Module>>::run(llvm::Module&, llvm::AnalysisManager<llvm::Module>&) (/usr/lib/llvm-17/bin/../lib/libLLVM-17.so.1+0xe3f224)
-#14 0x000055abea79e4c9 llvm::runPassPipeline(llvm::StringRef, llvm::Module&, llvm::TargetMachine*, llvm::TargetLibraryInfoImpl*, llvm::ToolOutputFile*, llvm::ToolOutputFile*, llvm::ToolOutputFile*, llvm::StringRef, llvm::ArrayRef<llvm::PassPlugin>, llvm::opt_tool::OutputKind, llvm::opt_tool::VerifierKind, bool, bool, bool, bool, bool, bool, bool) (/usr/lib/llvm-17/bin/opt+0x1e4c9)
-#15 0x000055abea7ab35d main (/usr/lib/llvm-17/bin/opt+0x2b35d)
-#16 0x00007f1d02eb2d90 (/lib/x86_64-linux-gnu/libc.so.6+0x29d90)
-#17 0x00007f1d02eb2e40 __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29e40)
-#18 0x000055abea798175 _start (/usr/lib/llvm-17/bin/opt+0x18175)
+Instruction hit counts
+-----------------------------
+add : 2
+call : 1
+ret : 1
+load : 6
+br : 2
+alloca : 4
+store : 5
+icmp : 1
+-----------------------------
